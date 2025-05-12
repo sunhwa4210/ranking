@@ -71,7 +71,7 @@ const RankingApp = () => {
     }}>
       <h1 style={{
         marginTop: "20vh",
-        fontSize: "4rem",
+        fontSize: "3rem",
         marginBottom: "3vh",
         textAlign: "center"
       }}>
@@ -135,45 +135,66 @@ const RankingApp = () => {
 
       {/* 테이블 */}
       <div style={{
-        backgroundColor: "rgba(255,255,255,0.15)",
-        padding: "2rem",
-        borderRadius: "1.5rem",
-        boxShadow: "0 8px 16px rgba(0,0,0,0.4)",
-        width: "90vw",
-        maxWidth: "1200px",
-        overflowX: "auto"
+  backgroundColor: "rgba(255,255,255,0.15)",
+  padding: "0",
+  borderRadius: "1.5rem",
+  boxShadow: "0 8px 16px rgba(0,0,0,0.4)",
+  width: "90vw",
+  maxWidth: "1200px",
+  overflow: "hidden"
+}}>
+  <table style={{
+    width: "100%",
+    color: "white",
+    borderCollapse: "separate",
+    borderSpacing: 0,
+    fontSize: "1.5rem",
+    textAlign: "center",
+  }}>
+    <thead>
+      <tr style={{
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        fontWeight: "bold",
+        position: "sticky",
+        top: 0,
+        zIndex: 2
       }}>
-        <table style={{
-          width: "100%",
-          color: "white",
-          borderCollapse: "collapse",
-          fontSize: "1.5rem",
-          textAlign: "center"
-        }}>
-          <thead>
-            <tr style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              fontWeight: "bold"
-            }}>
-              <th style={{ padding: "1.2rem" }}>등수</th>
-              <th style={{ padding: "1.2rem" }}>닉네임</th>
-              <th style={{ padding: "1.2rem" }}>소요 시간</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ranking.map((entry) => (
-              <tr key={entry.id} style={{
-                borderBottom: "1px solid rgba(255,255,255,0.2)",
-              }}>
-                <td style={{ padding: "1.2rem",fontWeight: "bold" }}>{entry.rank}</td>
-                <td style={{ padding: "1.2rem",fontWeight: "bold" }}>{entry.nickname}</td>
-                <td style={{ padding: "1.2rem" ,fontWeight: "bold"}}>{formatDuration(entry.duration)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+        <th style={{ padding: "1.2rem", background: "rgba(0,0,0,0.6)" }}>등수</th>
+        <th style={{ padding: "1.2rem", background: "rgba(0,0,0,0.6)" }}>닉네임</th>
+        <th style={{ padding: "1.2rem", background: "rgba(0,0,0,0.6)" }}>소요 시간</th>
+      </tr>
+    </thead>
+  </table>
+
+  {/* ✅ 스크롤 가능한 tbody만 분리 */}
+  <div style={{
+    maxHeight: "50vh",
+    overflowY: "auto"
+  }}>
+    <table style={{
+      width: "100%",
+      color: "white",
+      borderCollapse: "separate",
+      borderSpacing: 0,
+      fontSize: "1.5rem",
+      textAlign: "center"
+    }}>
+      <tbody>
+        {ranking.map((entry) => (
+          <tr key={entry.id} style={{
+            backgroundColor: "rgba(255, 255, 255, 0.05)",
+            borderBottom: "1px solid rgba(255,255,255,0.2)"
+          }}>
+            <td style={{ padding: "1.2rem", fontWeight: "bold" }}>{entry.rank}</td>
+            <td style={{ padding: "1.2rem", fontWeight: "bold" }}>{entry.nickname}</td>
+            <td style={{ padding: "1.2rem", fontWeight: "bold" }}>{formatDuration(entry.duration)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
   );
 };
 
